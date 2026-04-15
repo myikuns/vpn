@@ -27,8 +27,8 @@
 | 序号 | 机场名（点击跳转详情） | 官网 | 套餐与特色（默认月付） |
 | -------- | -------- | -------- | -------- |
 | 1 | [轻云](#轻云) | [官网](https://qing.to/#/register?code=9pWeoTtH) | ¥6/2TB（长期）流量超大适合当长期备用！ |
-| 2 | [赔钱机场](#赔钱机场) | [官网](https://sink.cheapairports.dpdns.org/zwp49s) | ￥1.5月/100G,￥2.99月/500G |
-| 3 | [Kitty Network](#kitty-network) | [官网](https://sink.cheapairports.dpdns.org/nrdjeu) | ￥24年付/128G（平均2元/月） |
+| 2 | [赔钱机场](#赔钱机场) | [官网](https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw) | ￥1.5月/100G,￥2.99月/500G |
+| 3 | [Kitty Network](#kitty-network) | [官网](https://kitty.fo/#/register?code=ar5w8qPn) | ￥24年付/128G（平均2元/月） |
 | 3 | [亏本机场](#亏本机场) | [官网](https://xn--7kq24s4ynvb.site/#/register?code=XZxkVGXN) | ¥2/500G(月付)¥10/1234GB(长期)、经济实惠、流媒体解锁、不限制设备！ |
 
 > **家宽/电商**：悦通（目前有台湾/美国/日本/韩国/越南 ISP 家宽节点，套餐带💎有家宽节点与专属AI节点！）狗子云（主要是香港与台湾住宅IP，以及美国的原生IP）   
@@ -39,7 +39,7 @@
 <hr>
 
 ### 悦通
-[悦通官网](https://sink.cheapairports.dpdns.org/648txr)
+[悦通官网](https://yk1u.yue.to/#/register?code=JqCr6Tpn)
 
 🔥活动：2026年4月13日 - 2026年4月20日，
 悦通全套餐限时立减 30%，优惠码：YUE30  
@@ -59,7 +59,7 @@
 * 328元终身永久不限量99T高速流量
 * 520元终身永久不限流量，无限带宽，买断即享，彻底告别流量焦虑
 
-[悦通官网](https://sink.cheapairports.dpdns.org/648txr)
+[悦通官网](https://yk1u.yue.to/#/register?code=JqCr6Tpn)
 <details>
 <summary>套餐价格</summary>
   
@@ -80,7 +80,7 @@
 * 不限连接数量
 * 包含原生，家宽节点
 
-[雪山机场官网](https://sink.cheapairports.dpdns.org/m82fux)
+[雪山机场官网](https://www.xueshan.shop/#/register?code=h0lPgItf)
 <details>
 <summary>套餐价格</summary>
 
@@ -105,7 +105,7 @@
 * 包含全套静态节点 (美/日/台/英/尼/欧) 具体看套餐简介！晚高峰优秀！
 * 另外有专属美国家宽车只要20￥/250GB！具体注册查看即可！
 
-[苏菲家宽官网](https://sink.cheapairports.dpdns.org/m82fux)
+[苏菲家宽官网](https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3)
 <details>
 <summary>套餐价格</summary>
 
@@ -121,14 +121,14 @@
 
 ### XSUS
 
-套餐价格：¥50/800GB【星链版】¥9.9/1TB【纯直连】¥20/250G【美国静态家宽车】¥40/550GB【美国动态家宽】
+套餐价格：¥10/168GB
 
 特点：
-* 内有日本、美国等星链家宽、IEPL专线、真实ISP指纹，原生住宅环境！
-* 包含全套静态节点 (美/日/台/英/尼/欧) 具体看套餐简介！晚高峰优秀！
-* 另外有专属美国家宽车只要20￥/250GB！具体注册查看即可！
+* 有越南、美国、日本、香港台湾澳门等家宽节点，同时也是三年老牌机场！
+* 服务超级稳定、超低延迟、节点众多！速度快！
+* 三网延迟优化，节点丰富，体验很好！
 
-[苏菲家宽官网](https://sink.cheapairports.dpdns.org/m82fux)
+[XSUS官网](https://xs-us.xyz/register?code=6LiiWirT)
 <details>
 <summary>套餐价格</summary>
 
@@ -136,9 +136,7 @@
 
 </details>
 <details>
-<summary>测速</summary>
-
-![测速](./assists/雪山机场/speed.png)
+<summary>无法测速，机场主动屏蔽</summary>
 
 </details>
 
@@ -151,7 +149,7 @@
 * 支持新疆，河南，福建，用户使用
 * 无限制使用行为，无存储节点日志
 
-[良心云官网](https://sink.cheapairports.dpdns.org/zxrc3d)
+[良心云官网](https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3)
 <details>
 <summary>套餐价格</summary>
 
@@ -161,15 +159,15 @@
 <hr>
 
 ### 狗子云
-套餐价格：￥3/168GB
+套餐价格：￥3/168GB ￥5r/168(分销版)
 
 特点：
 * 提供原生IP，动态家宽支持
-* 不限速
-* 0.1 倍率节点 · 下载/观影更安心
+* 不限速、内带分销套餐，可以自行销售！
+* 内含0.1x 倍率节点 · 下载/观影更安心
 * 解锁 OpenAI / Netflix / TikTok / YouTube 等热门服务 
 
-[狗子云官网](https://sink.cheapairports.dpdns.org/xhjy5m)
+[狗子云官网](https://gz-cloud.top/#/register?code=kDV2n3tI)
 <details>
 <summary>套餐价格</summary>
 
@@ -186,13 +184,52 @@
 * 有电信专属优化,BGP与0.5x低倍率节点！
 * Netfilx/Hulu/Hbo/Disney+/Dazn等流媒体
 
-[蜜雪冰城官网](https://sink.cheapairports.dpdns.org/hwm7wr)
+[蜜雪冰城官网](https://kad520.uk/#/register?code=5UplgCKR)
 <details>
 <summary>套餐价格</summary>
 
 ![套餐价格](./assists/蜜雪冰城/price.png)
 
 </details>
+<hr>
+
+### 墨菲云
+套餐价格：¥4/520GB（直连&家宽）¥10/100G（带专线·家宽）
+
+特点：
+* 直连+中转+家宽 有0.1x节点
+* 家宽低延迟节点为1.1x~1.5x、三网优化!
+* 稳定解锁流媒体奈菲、迪士尼、TikTok、ChatGPT 等
+* 永久95折折扣码：**MFXY95%yyds**
+
+[墨菲云官网](https://portal.mofeiyun.com/#/register?code=h3fwdY8y)
+<details>
+<summary>套餐价格</summary>
+
+![套餐价格](./assists/赔钱机场/price.png)
+
+</details>
+
+<hr>
+
+
+### 轻云
+
+套餐价格：¥6/2TB（长期）流量超大适合当长期备用！
+
+特点：
+* 不限速，不限在线设备数量
+* 长期备用性价比超高、不过节点较少
+* 解锁 Netflix，Disney+，ChatGPT等
+
+[轻云官网](https://qing.to/#/register?code=9pWeoTtH)
+<details>
+<summary>套餐价格</summary>
+
+![套餐价格](./assists/Kitty-Network/price.png)
+
+</details>
+
 <hr>
 
 ### 赔钱机场
@@ -203,7 +240,7 @@
 * 包含0.1倍率低扣费福利下载节点
 * 稳定解锁流媒体奈菲、迪士尼、TikTok、ChatGPT 等
 
-[赔钱机场官网](https://sink.cheapairports.dpdns.org/zwp49s)
+[赔钱机场官网](https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw)
 <details>
 <summary>套餐价格</summary>
 
@@ -221,10 +258,31 @@
 * 不限速，不限在线设备数量
 * 解锁 Netflix，Disney+，ChatGPT等
 
-[Kitty Network官网](https://sink.cheapairports.dpdns.org/nrdjeu)
+[Kitty Network官网](https://kitty.fo/#/register?code=ar5w8qPn)
 <details>
 <summary>套餐价格</summary>
 
 ![套餐价格](./assists/Kitty-Network/price.png)
 
 </details>
+
+<hr>
+
+### 亏本机场
+
+套餐价格： ¥2/500G（月付）¥10/1234GB（长期）
+
+特点：
+* 不限在线设备数量、经济实惠、延迟较高
+* 长期备用性价比超高、不过节点质量一般
+* 解锁流媒体、有0.1x倍率节点
+
+[亏本机场官网](https://xn--7kq24s4ynvb.site/#/register?code=XZxkVGXN)
+<details>
+<summary>套餐价格</summary>
+
+![套餐价格](./assists/Kitty-Network/price.png)
+
+</details>
+
+<hr>
