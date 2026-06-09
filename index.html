@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,164 +10,106 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans SC', sans-serif; }
-        .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
-        .card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); }
+        .card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+            border-color: rgb(103 232 249);
+        }
         .hero-bg { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
-    <!-- Nav -->
     <nav class="glass fixed top-0 left-0 right-0 z-50 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <span class="text-2xl font-bold text-cyan-400">挂梯子</span>
             </div>
             <div class="flex items-center gap-8 text-sm">
-                <a href="#" class="hover:text-cyan-400 transition-colors">首页</a>
                 <a href="#top" class="hover:text-cyan-400 transition-colors">强烈推荐</a>
-                <a href="#backup" class="hover:text-cyan-400 transition-colors">备用</a>
-                <a href="#" class="hover:text-cyan-400 transition-colors">纯净IP</a>
+                <a href="#backup" class="hover:text-cyan-400 transition-colors">备用推荐</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
     <header class="hero-bg pt-24 pb-16 text-center">
         <div class="max-w-4xl mx-auto px-6">
             <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-tight">挂上梯子，扬帆出海</h1>
-            <p class="text-xl text-zinc-400 mb-8">2026年6月 · 实测低价机场/VPN推荐</p>
-            <div class="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-2xl text-sm">
-                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                特殊时期 · 建议多备几个
-            </div>
+            <p class="text-xl text-zinc-400">2026年6月 · 实测低价机场推荐</p>
         </div>
     </header>
 
     <div class="max-w-7xl mx-auto px-6 pb-20">
-        <!-- Pure IP -->
         <div class="mt-8 flex flex-wrap gap-4 justify-center">
-            <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank" 
-               class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-2xl text-sm transition-all">纯净IP（电商/AI）</a>
-            <a href="https://tgsss.com/3A233F64" target="_blank" 
-               class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-2xl text-sm transition-all">海外账号购买</a>
+            <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank" class="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-all">纯净IP</a>
+            <a href="https://tgsss.com/3A233F64" target="_blank" class="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-2xl transition-all">海外账号</a>
         </div>
 
-        <!-- Search & Filter -->
-        <div class="mt-12 flex flex-col md:flex-row gap-4 items-center justify-between">
-            <input id="search" type="text" placeholder="搜索机场名称、特点..." 
-                   class="w-full md:w-96 bg-zinc-900 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:border-cyan-400">
-            <div class="flex gap-2">
-                <button onclick="filterTag('all')" class="tag-btn active px-5 py-2 rounded-2xl text-sm">全部</button>
-                <button onclick="filterTag('home')" class="tag-btn px-5 py-2 rounded-2xl text-sm">家宽</button>
-                <button onclick="filterTag('emby')" class="tag-btn px-5 py-2 rounded-2xl text-sm">Emby</button>
-            </div>
-        </div>
-
-        <!-- Top Recommend -->
         <h2 id="top" class="text-3xl font-semibold mt-16 mb-8 flex items-center gap-3">
-            <span class="text-cyan-400">⭐</span> 强烈推荐
+            ⭐ 强烈推荐
         </h2>
         <div id="top-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <!-- Backup -->
         <h2 id="backup" class="text-3xl font-semibold mt-20 mb-8 flex items-center gap-3">
-            <span class="text-amber-400">🔄</span> 备用推荐
+            🔄 备用推荐
         </h2>
         <div id="backup-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <!-- Emby Summary -->
         <div class="mt-20 bg-zinc-900/70 border border-white/10 rounded-3xl p-8">
             <h3 class="text-xl font-semibold mb-4">影视 / Emby 永久推荐</h3>
-            <p class="text-zinc-400">悦通 &amp; 雪山<br>悦通性价比高，永久套餐+Emby；雪山资源丰富，永久套餐不限时。</p>
+            <p class="text-zinc-400">悦通 & 雪山Link</p>
         </div>
     </div>
 
-    <footer class="border-t border-white/10 py-12 text-center text-zinc-500 text-sm">
+    <footer class="border-t border-white/10 py-12 text-center text-zinc-500">
         <a href="https://github.com/myikuns/vpnproxy" target="_blank" class="hover:text-white">挂上梯子，扬帆出海</a>
     </footer>
 
     <script>
         const topAirports = [
-            {
-                name: "TAG",
-                price: "¥114/500GB",
-                desc: "250+高速线路 · 家宽 · 解锁全流媒体+AI",
-                link: "https://558343.dedicated-afflink.com/#/auth/dvmePpjQ",
-                tag: "home"
-            },
-            {
-                name: "奶昔",
-                price: "¥74.55/200GB",
-                desc: "主流节点 · 速度快 · 解锁全流媒体+AI",
-                link: "https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643",
-                tag: ""
-            },
-            {
-                name: "苏菲家宽",
-                price: "¥50/800GB 星链",
-                desc: "星链家宽 · IEPL专线 · 真实住宅",
-                link: "https://sufe.pro/#/register?code=TBGuIiAi",
-                tag: "home"
-            },
-            {
-                name: "雪山Link",
-                price: "¥9.9/500GB",
-                desc: "高质量节点 · Emby · 商宽专属",
-                link: "https://www.xueshan.shop/#/register?code=h0lPgItf",
-                tag: "emby"
-            },
-            {
-                name: "悦通",
-                price: "¥12.9/1TB",
-                desc: "家宽套餐 · Emby永久 · 链式代理",
-                link: "https://my.yue.to/#/register?code=JqCr6Tpn",
-                tag: "emby"
-            }
+            {name:"TAG",price:"¥114/500GB",desc:"250+高速线路 家宽 覆盖100+国家 全解锁",link:"https://558343.dedicated-afflink.com/#/auth/dvmePpjQ"},
+            {name:"奶昔",price:"¥74.55/200GB",desc:"主流节点 速度快 全流媒体+AI解锁",link:"https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643"},
+            {name:"苏菲家宽",price:"¥50/800GB 星链",desc:"星链家宽 IEPL专线 真实住宅",link:"https://sufe.pro/#/register?code=TBGuIiAi"},
+            {name:"肯の机",price:"¥35/100GB",desc:"GTM优化 全1倍率 2Gbps 家宽节点",link:"https://kendeji.io/#/auth?invite=uu15Kzxj"},
+            {name:"雪山Link",price:"¥9.9/500GB",desc:"高质量节点 Emby 商宽专属",link:"https://www.xueshan.shop/#/register?code=h0lPgItf"},
+            {name:"悦通",price:"¥12.9/1TB",desc:"家宽套餐 Emby永久 链式代理",link:"https://my.yue.to/#/register?code=JqCr6Tpn"},
+            {name:"落云",price:"¥7/300GB",desc:"稀缺IP 原生住宅 可改抖音小红书",link:"https://88888.ee88.tk/#/register?code=UVI42l9q"},
+            {name:"XSUS",price:"¥12/168GB",desc:"家宽节点 三年老牌 游戏低延迟",link:"https://xsus3.com/register?code=6LiiWirT"},
+            {name:"XFLTD",price:"¥7/150GB",desc:"六年老牌 香港日本台湾美国节点",link:"https://www.xfltd.org/#/register?code=ptlnb86g"},
+            {name:"搅局者",price:"¥10.9/500GB",desc:"无限流量 无速度限制",link:"https://搅局者.com/#/register?code=PWV5Y7dc"}
         ];
 
         const backupAirports = [
-            { name: "良心云", price: "¥2/100GB", desc: "三网优化 · 流媒体+AI", link: "https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3" },
-            { name: "狗子云", price: "¥3/168GB", desc: "住宅IP · 低价", link: "https://gz-cloud.top/#/register?code=kDV2n3tI" },
-            { name: "墨菲云", price: "¥3.20/222GB", desc: "直连+家宽", link: "https://portal.mofeiyun.com/#/register?code=h3fwdY8y" }
+            {name:"良心云",price:"¥2/100GB",desc:"三网优化 流媒体+AI",link:"https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3"},
+            {name:"狗子云",price:"¥3/168GB",desc:"住宅IP 低价",link:"https://gz-cloud.top/#/register?code=kDV2n3tI"},
+            {name:"墨菲云",price:"¥3.20/222GB",desc:"直连+家宽 0.1x节点",link:"https://portal.mofeiyun.com/#/register?code=h3fwdY8y"},
+            {name:"赔钱机场",price:"¥1.5/100GB",desc:"经济实惠 老牌",link:"https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw"},
+            {name:"蜜雪冰城",price:"¥2/100GB",desc:"三网优化 公益套餐",link:"https://kad520.uk/#/register?code=5UplgCKR"},
+            {name:"果冻加速",price:"¥9.9/不限量",desc:"速度快 无审计 PT下载",link:"https://naichachong.com/#/register?code=yO3p6doW"}
         ];
 
         function createCard(a) {
             return `
-                <div class="card bg-zinc-900 border border-white/10 rounded-3xl p-6 h-full flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-semibold text-xl">${a.name}</h3>
-                            <p class="text-cyan-400 font-medium">${a.price}</p>
-                        </div>
+                <div class="card bg-zinc-900 border border-white/10 rounded-3xl p-6 h-full flex flex-col group">
+                    <div class="flex justify-between mb-4">
+                        <h3 class="font-semibold text-2xl">${a.name}</h3>
+                        <span class="text-cyan-400 font-medium text-right">${a.price}</span>
                     </div>
-                    <p class="text-zinc-400 flex-1">${a.desc}</p>
+                    <p class="text-zinc-400 flex-1 leading-relaxed">${a.desc}</p>
                     <a href="${a.link}" target="_blank" 
-                       class="mt-6 block text-center bg-cyan-400 hover:bg-cyan-300 transition-colors text-black font-semibold py-3 rounded-2xl">
+                       class="mt-6 block text-center bg-cyan-400 hover:bg-cyan-300 text-black font-semibold py-3.5 rounded-2xl transition-all group-hover:scale-105">
                         注册使用
                     </a>
                 </div>
             `;
         }
 
-        function render() {
-            document.getElementById('top-grid').innerHTML = topAirports.map(createCard).join('');
-            document.getElementById('backup-grid').innerHTML = backupAirports.map(createCard).join('');
-        }
-
-        function filterTag(tag) {
-            document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active', 'bg-white/10'));
-            // Simple filter - can be expanded
-            render();
-        }
-
-        // Search
-        document.getElementById('search').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            // Basic client-side filter can be added here
-        });
-
-        render();
+        document.getElementById('top-grid').innerHTML = topAirports.map(createCard).join('');
+        document.getElementById('backup-grid').innerHTML = backupAirports.map(createCard).join('');
     </script>
 </body>
 </html>
+```
