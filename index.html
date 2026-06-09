@@ -1,450 +1,174 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>挂梯子 | 挂上梯子，扬帆出海</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-
-        * {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg1: #0f0c29;
-            --bg2: #302b63;
-            --bg3: #24243e;
-            --primary: #00ffcc;
-            --primary-dark: #00cc99;
-            --accent: #ffcc00;
-            --danger: #ff3366;
-            --text: #ffffff;
-            --muted: rgba(255,255,255,0.82);
-            --card: rgba(255,255,255,0.06);
-            --card-hover: rgba(255,255,255,0.09);
-            --border: rgba(255,255,255,0.12);
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 16px 14px 32px;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            text-align: center;
-            margin: 18px 0 6px;
-            text-shadow: 0 0 18px rgba(0,255,204,0.65);
-            line-height: 1.2;
-        }
-
-        .slogan {
-            font-size: clamp(1rem, 3vw, 1.35rem);
-            text-align: center;
-            margin: 0 0 22px;
-            opacity: 0.92;
-        }
-
-        h2 {
-            color: var(--primary);
-            border-bottom: 2px solid rgba(0,255,204,0.8);
-            padding-bottom: 8px;
-            margin: 28px 0 14px;
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            line-height: 1.3;
-        }
-
-        h3 {
-            color: var(--accent);
-            margin: 20px 0 8px;
-            font-size: clamp(1rem, 2.4vw, 1.2rem);
-            line-height: 1.35;
-        }
-
-        p {
-            margin: 8px 0 12px;
-            color: var(--muted);
-            font-size: 0.98rem;
-        }
-
-        .note {
-            background: rgba(255,100,100,0.12);
-            padding: 14px 16px;
-            border-radius: 10px;
-            border-left: 5px solid var(--danger);
-            margin: 16px 0 22px;
-            font-size: 0.96rem;
-            line-height: 1.65;
-        }
-
-        .tip {
-            color: #ff8aa5;
-            font-weight: 700;
-            margin: 6px 0 12px;
-            font-size: 0.95rem;
-        }
-
-        a {
-            color: var(--primary);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-
-        .red { color: #ff5b5b; }
-        .yellow { color: var(--accent); }
-
-        .btn {
-            display: inline-block;
-            padding: 9px 16px;
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            color: #000;
-            border-radius: 999px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.92rem;
-            line-height: 1.2;
-            text-align: center;
-            min-width: 104px;
-            white-space: nowrap;
-        }
-
-        .btn:hover {
-            filter: brightness(1.05);
-        }
-
-        .table-wrap {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 12px;
-            background: var(--card);
-            margin: 12px 0 18px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 760px;
-        }
-
-        th, td {
-            padding: 10px 10px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-
-        th {
-            background: rgba(0,255,204,0.16);
-            color: var(--primary);
-            font-size: 0.92rem;
-            font-weight: 700;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-
-        tr:hover td {
-            background: var(--card-hover);
-        }
-
-        strong {
-            color: #fff;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 28px;
-            opacity: 0.78;
-            font-size: 0.95rem;
-            padding: 18px 0 10px;
-        }
-
-        .section-text {
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 12px 10px 24px;
-            }
-
-            h1 {
-                margin-top: 10px;
-            }
-
-            .slogan {
-                margin-bottom: 18px;
-            }
-
-            h2 {
-                margin-top: 22px;
-                margin-bottom: 10px;
-            }
-
-            h3 {
-                margin-top: 16px;
-                margin-bottom: 6px;
-            }
-
-            p {
-                font-size: 0.92rem;
-                margin: 6px 0 10px;
-            }
-
-            .note {
-                padding: 12px 13px;
-                font-size: 0.9rem;
-                margin: 12px 0 18px;
-            }
-
-            .tip {
-                font-size: 0.88rem;
-                margin-bottom: 10px;
-            }
-
-            th, td {
-                padding: 9px 8px;
-                font-size: 0.86rem;
-                min-width: 110px;
-            }
-
-            .btn {
-                padding: 8px 14px;
-                font-size: 0.86rem;
-                min-width: 96px;
-            }
-
-            .footer {
-                margin-top: 22px;
-                font-size: 0.88rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                line-height: 1.55;
-            }
-
-            .container {
-                padding: 10px 8px 20px;
-            }
-
-            table {
-                min-width: 680px;
-            }
-
-            th, td {
-                padding: 8px 7px;
-                font-size: 0.83rem;
-            }
-
-            .btn {
-                padding: 7px 12px;
-                font-size: 0.82rem;
-            }
-        }
+        body { font-family: 'Noto Sans SC', sans-serif; }
+        .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
+        .card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .hero-bg { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>挂梯子</h1>
-        <p class="slogan">挂上梯子，扬帆出海</p>
+<body class="bg-zinc-950 text-white">
+    <!-- Nav -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-bold text-cyan-400">挂梯子</span>
+            </div>
+            <div class="flex items-center gap-8 text-sm">
+                <a href="#" class="hover:text-cyan-400 transition-colors">首页</a>
+                <a href="#top" class="hover:text-cyan-400 transition-colors">强烈推荐</a>
+                <a href="#backup" class="hover:text-cyan-400 transition-colors">备用</a>
+                <a href="#" class="hover:text-cyan-400 transition-colors">纯净IP</a>
+            </div>
+        </div>
+    </nav>
 
-        <div class="note">
-            <strong># 低价机场/VPN 推荐（2026 年 6 月已更新）</strong><br>
-            日常更新较慢，但<strong>每一条都是自己长期实测</strong>过的，不会滥竽充数。<br>
-            目前属于特殊时期，节点多少都会有波动，<strong>建议多备几个</strong>做备用。<br>
-            注：目前专线、中转时长波动不稳定，最近频繁拔线且用且珍惜吧！
+    <!-- Hero -->
+    <header class="hero-bg pt-24 pb-16 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 tracking-tight">挂上梯子，扬帆出海</h1>
+            <p class="text-xl text-zinc-400 mb-8">2026年6月 · 实测低价机场/VPN推荐</p>
+            <div class="inline-flex items-center gap-2 bg-white/10 px-6 py-3 rounded-2xl text-sm">
+                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                特殊时期 · 建议多备几个
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 pb-20">
+        <!-- Pure IP -->
+        <div class="mt-8 flex flex-wrap gap-4 justify-center">
+            <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank" 
+               class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-2xl text-sm transition-all">纯净IP（电商/AI）</a>
+            <a href="https://tgsss.com/3A233F64" target="_blank" 
+               class="px-5 py-3 bg-white/5 hover:bg-white/10 rounded-2xl text-sm transition-all">海外账号购买</a>
         </div>
 
-        <h2>纯净 IP 补充（电商 / AI / 高要求场景）</h2>
-        <p class="section-text">
-            需要静态住宅 IP 或动态短效 IP →
-            <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank">《点此查看》</a>
-        </p>
-        <p class="section-text">
-            苹果ID&TG/x/ins/gpt账号等低价海外账号购买 →
-            <a href="https://tgsss.com/3A233F64" target="_blank">《点此查看》</a>
-        </p>
-
-        <h2>一、强烈推荐（性价比 & 家宽 & 专线）</h2>
-        <p class="tip">表格可左右滑动，手机端请横向查看</p>
-
-        <div class="table-wrap">
-            <table>
-                <tr>
-                    <th>机场名称</th>
-                    <th>价格/流量（月付）</th>
-                    <th>亮点特点</th>
-                    <th>链接（点击注册）</th>
-                    <th>备注</th>
-                </tr>
-                <tr>
-                    <td><strong style="color:pink;">TAG</strong></td>
-                    <td>¥114/500GB</td>
-                    <td>含有250+条高速线路与超多家宽线路，覆盖全球100+个国家(含卫星网络) 同时解锁全部流媒体和AI！</td>
-                    <td><a href="https://558343.dedicated-afflink.com/#/auth/dvmePpjQ" target="_blank" class="btn">注册链接</a></td>
-                    <td>注意！最多【10】个设备同时链接使用！不保证【Tiktok】能用、不保证【抖音、快手、微博、B站等大陆应用】修改定位!</td>
-                </tr>
-                <tr>
-                    <td><strong style="color:pink;">奶昔</strong></td>
-                    <td>¥74.55/200GB<br>¥123.33/500GB</td>
-                    <td>主流节点都有、节点质量高，速度快！ 同时解锁全部流媒体和AI！</td>
-                    <td><a href="https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643" target="_blank" class="btn">注册链接</a></td>
-                    <td>注意！最多【2】个设备同时链接使用！可以加购日本、美国、韩国 Anycast网络·中美金融专线！</td>
-                </tr>
-                <tr>
-                    <td><strong style="color:pink;">苏菲家宽</strong></td>
-                    <td>¥50/800GB【星链版】<br>¥9.9/1TB【纯直连】<br>￥20/250GB【美国静态】</td>
-                    <td>日本、美国等星链家宽、IEPL专线、真实ISP指纹，原生住宅环境！<br>包含全套静态节点（美/日/台/英/尼/欧）<br>另外有专属美国家宽车只需20￥每月250GB!具体注册查看即可！</td>
-                    <td><a href="https://sufe.pro/#/register?code=TBGuIiAi" target="_blank" class="btn">注册链接</a></td>
-                    <td><span class="yellow">直连版无家宽！</span> 新人注册送优惠券，极致优化</td>
-                </tr>
-                <tr>
-                    <td><strong style="color:pink;">肯の机</strong></td>
-                    <td>￥35/100GB ￥70/200GB</td>
-                    <td>提供🚀GTM均衡优化入口线路负载 带V6入口 GOMAMI DMIT等入口 AKARI等出口！全1倍率节点,赠超低0.02倍率！</td>
-                    <td><a href="https://kendeji.io/#/auth?invite=uu15Kzxj" target="_blank" class="btn">注册链接</a></td>
-                    <td>解锁全流媒体解锁和全AI解锁！速率高达2Gbps、无限制同时连接 IP 数！带部分家宽节点！</td>
-                </tr>
-                
-                <tr>
-                    <td><strong style="color:red;">雪山Link</strong></td>
-                    <td>¥9.9/500GB<br>¥39.9/1.5TB（长期）<br>¥799/永久</td>
-                    <td>节点质量高，速度快，三网延迟优化！有商宽专属和0.1x倍率节点，且内送Emby服！</td>
-                    <td><a href="https://www.xueshan.shop/#/register?code=h0lPgItf" target="_blank" class="btn">注册链接</a></td>
-                    <td>Emby有期限（根据套餐时间），建议使用一段时间后再考虑购入永久套餐、爽看EMBY！</td>
-                </tr>
-                <tr>
-                    <td><strong style="color:red;">悦通</strong></td>
-                    <td>¥12.9/1TB<br>¥19.9/500G（长期）<br>¥520/永久</td>
-                    <td>
-                        100+节点，冷门地区等 <a href="https://status.yue.to/status" target="_blank">点我查看</a><br>
-                        带💎套餐为家宽套餐（台湾/美国/日本/韩国/越南五大家宽节点与专属AI节点）<br>
-                        <span class="red">另有不定期余额抽奖、有永久套餐、支持链式代理！还有Emby专属!🔥520期间七折码：YUE520🔥</span>
-                    </td>
-                    <td><a href="https://my.yue.to/#/register?code=JqCr6Tpn" target="_blank" class="btn">注册链接</a></td>
-                    <td>
-                        建议使用《<a href="https://github.com/onesyue/yuelink" target="_blank">专属APP</a>》<br>
-                        推荐带💎的套餐，普通套餐无家宽节点<br>
-                        Emby为永久，无任何期限！但目前EMBY还在搬运补充！EMBY库不如雪山！
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>落云</strong></td>
-                    <td>¥7/300GB</td>
-                    <td>有南极、冰岛等稀缺iP、原生&住宅iP</td>
-                    <td><a href="https://88888.ee88.tk/#/register?code=UVI42l9q" target="_blank" class="btn">注册链接</a></td>
-                    <td>解锁：Netflix, ChatGPT, Gemini。网速不限速 同时在线设备不限制 可改抖音iP 小红书iP</td>
-                </tr>
-                <tr>
-                    <td><strong>XSUS</strong></td>
-                    <td>¥12/168GB</td>
-                    <td>有越南、美国、日本、香港台湾澳门等家宽节点、同时是三年老牌机场！服务超级稳定、超低延迟、节点众多！速度快！目前上架了IPEL专线 专注游戏低延迟！</td>
-                    <td><a href="https://xsus3.com/register?code=6LiiWirT" target="_blank" class="btn">注册链接</a></td>
-                    <td> 有【香港、台湾、澳门、日本、美国、越南、乌克兰】家宽节点、服务很好、节点故障率极低！</td>
-                </tr>
-                <tr>
-                    <td><strong>XFLTD</strong></td>
-                    <td>¥7/150GB</td>
-                    <td>有🇭🇰 香港、🇯🇵 日本、🇹🇼 台湾、🇸🇬 新加坡、🇺🇸 美国等节点，同时也是六年老牌机场！三网延迟优化，节点丰富，体验很好！</td>
-                    <td><a href="https://www.xfltd.org/#/register?code=ptlnb86g" target="_blank" class="btn">注册链接</a></td>
-                    <td> 有【香港、台湾、澳门、日本、美国、越南、乌克兰】家宽节点、服务很好、节点故障率极低！</td>
-                </tr>
-                <tr>
-                    <td><strong>搅局者</strong></td>
-                    <td>￥10.9年付/每月500GB & ￥16.9一年/不限量</td>
-                    <td>无限流量+无速度限制！限制设备2台！</td>
-                    <td><a href="https://搅局者.com/#/register?code=PWV5Y7dc" target="_blank" class="btn">注册链接</a></td>
-                    <td>超低价格！无限流量！速度不限！爽看EMBY与下载学习资料~</td>
-                </tr>
-            </table>
-        </div>
-        
-        <h2>二、备用推荐</h2>
-
-        <div class="table-wrap">
-            <table>
-                <tr>
-                    <th>机场名称</th>
-                    <th>价格/流量</th>
-                    <th>亮点特点</th>
-                    <th>链接（点击注册）</th>
-                    <th>备注</th>
-                </tr>
-                <tr>
-                    <td><strong>良心云</strong></td>
-                    <td>¥2/100GB</td>
-                    <td>日美港三网极致优化、流媒体解锁、AI解锁、晚高峰稳</td>
-                    <td><a href="https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3" target="_blank" class="btn">注册链接</a></td>
-                    <td>晚上经常跳CF验证，但这个价位没啥说的了</td>
-                </tr>
-                <tr>
-                    <td><strong>狗子云</strong></td>
-                    <td>¥3/168GB</td>
-                    <td>有香港与台湾住宅IP以及美国原生IP、可分销、超低价格（机场主有钱开着玩）注：节点重复率较高<br>
-                    <span class="red">🔥五一期间66折码：五一🔥注：VIP1、分销、不限时套餐不可使用!</span>
-                    </td>
-                    <td><a href="https://gz-cloud.top/#/register?code=kDV2n3tI" target="_blank" class="btn">注册链接</a></td>
-                    <td>低价套餐且内有专门分销套餐，可以自己售卖！</td>
-                </tr>
-                <tr>
-                    <td><strong>墨菲云</strong></td>
-                    <td>¥3.20/222GB（直连&家宽）</td>
-                    <td>直连+中转+家宽 有0.1x节点<br>家宽低延迟节点为1.1x~1.5x、三网优化!有专门ISP分销版注册查看即可！</td>
-                    <td><a href="https://portal.mofeiyun.com/#/register?code=h3fwdY8y" target="_blank" class="btn">注册链接</a></td>
-                    <td>永久95折折扣码：<strong>MFXY95%yyds</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>赔钱机场</strong></td>
-                    <td>¥1.5/100GB</td>
-                    <td>经济实惠、流媒体解锁、超级便宜，人数多，售后快</td>
-                    <td><a href="https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw" target="_blank" class="btn">注册链接</a></td>
-                    <td>老牌机场、很出名、人数较多、性价比高</td>
-                </tr>
-                <tr>
-                    <td><strong>蜜雪冰城</strong></td>
-                    <td>¥2/100GB <br>￥9.9/200GB【不限时】</td>
-                    <td>日新美港台、三网优化、流媒体解锁、AI解锁、有公益套餐、电信专属优化与0.5x节点</td>
-                    <td><a href="https://kad520.uk/#/register?code=5UplgCKR" target="_blank" class="btn">注册链接</a></td>
-                    <td><strong>目前属于小众机场，人数较少，体验很不错，有专属优化BGP与0.5x倍率爽用！</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>果冻加速</strong></td>
-                    <td>¥9.9/不限量（月付）</td>
-                    <td>速度快、无审计、不限量！适合流媒体！PT下载！</td>
-                    <td><a href="https://naichachong.com/#/register?code=yO3p6doW" target="_blank" class="btn">注册链接</a></td>
-                    <td>节点较少为日、美、港，适合跑PT下载类任务</td>
-                </tr>
-            </table>
+        <!-- Search & Filter -->
+        <div class="mt-12 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <input id="search" type="text" placeholder="搜索机场名称、特点..." 
+                   class="w-full md:w-96 bg-zinc-900 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:border-cyan-400">
+            <div class="flex gap-2">
+                <button onclick="filterTag('all')" class="tag-btn active px-5 py-2 rounded-2xl text-sm">全部</button>
+                <button onclick="filterTag('home')" class="tag-btn px-5 py-2 rounded-2xl text-sm">家宽</button>
+                <button onclick="filterTag('emby')" class="tag-btn px-5 py-2 rounded-2xl text-sm">Emby</button>
+            </div>
         </div>
 
-        
+        <!-- Top Recommend -->
+        <h2 id="top" class="text-3xl font-semibold mt-16 mb-8 flex items-center gap-3">
+            <span class="text-cyan-400">⭐</span> 强烈推荐
+        </h2>
+        <div id="top-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <h3>影视 / Emby / 永久 推荐总结</h3>
-        <p>悦通 & 雪山<br>
-        悦通便宜实惠！永久套餐搭配Emby直接完美！但目前EMBY库还在搬运补充！<br>
-        雪山Emby有期限（根据套餐时间）但资源丰富，永久套餐不限制时间！</p>
+        <!-- Backup -->
+        <h2 id="backup" class="text-3xl font-semibold mt-20 mb-8 flex items-center gap-3">
+            <span class="text-amber-400">🔄</span> 备用推荐
+        </h2>
+        <div id="backup-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        
-        <div class="footer">
-            <a href="https://github.com/myikuns/vpnproxy" target="_blank" class="btn">@挂上梯子，扬帆出海  @点我跳转官网</a></td>
+        <!-- Emby Summary -->
+        <div class="mt-20 bg-zinc-900/70 border border-white/10 rounded-3xl p-8">
+            <h3 class="text-xl font-semibold mb-4">影视 / Emby 永久推荐</h3>
+            <p class="text-zinc-400">悦通 &amp; 雪山<br>悦通性价比高，永久套餐+Emby；雪山资源丰富，永久套餐不限时。</p>
         </div>
     </div>
+
+    <footer class="border-t border-white/10 py-12 text-center text-zinc-500 text-sm">
+        <a href="https://github.com/myikuns/vpnproxy" target="_blank" class="hover:text-white">挂上梯子，扬帆出海</a>
+    </footer>
+
+    <script>
+        const topAirports = [
+            {
+                name: "TAG",
+                price: "¥114/500GB",
+                desc: "250+高速线路 · 家宽 · 解锁全流媒体+AI",
+                link: "https://558343.dedicated-afflink.com/#/auth/dvmePpjQ",
+                tag: "home"
+            },
+            {
+                name: "奶昔",
+                price: "¥74.55/200GB",
+                desc: "主流节点 · 速度快 · 解锁全流媒体+AI",
+                link: "https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643",
+                tag: ""
+            },
+            {
+                name: "苏菲家宽",
+                price: "¥50/800GB 星链",
+                desc: "星链家宽 · IEPL专线 · 真实住宅",
+                link: "https://sufe.pro/#/register?code=TBGuIiAi",
+                tag: "home"
+            },
+            {
+                name: "雪山Link",
+                price: "¥9.9/500GB",
+                desc: "高质量节点 · Emby · 商宽专属",
+                link: "https://www.xueshan.shop/#/register?code=h0lPgItf",
+                tag: "emby"
+            },
+            {
+                name: "悦通",
+                price: "¥12.9/1TB",
+                desc: "家宽套餐 · Emby永久 · 链式代理",
+                link: "https://my.yue.to/#/register?code=JqCr6Tpn",
+                tag: "emby"
+            }
+        ];
+
+        const backupAirports = [
+            { name: "良心云", price: "¥2/100GB", desc: "三网优化 · 流媒体+AI", link: "https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3" },
+            { name: "狗子云", price: "¥3/168GB", desc: "住宅IP · 低价", link: "https://gz-cloud.top/#/register?code=kDV2n3tI" },
+            { name: "墨菲云", price: "¥3.20/222GB", desc: "直连+家宽", link: "https://portal.mofeiyun.com/#/register?code=h3fwdY8y" }
+        ];
+
+        function createCard(a) {
+            return `
+                <div class="card bg-zinc-900 border border-white/10 rounded-3xl p-6 h-full flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-semibold text-xl">${a.name}</h3>
+                            <p class="text-cyan-400 font-medium">${a.price}</p>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 flex-1">${a.desc}</p>
+                    <a href="${a.link}" target="_blank" 
+                       class="mt-6 block text-center bg-cyan-400 hover:bg-cyan-300 transition-colors text-black font-semibold py-3 rounded-2xl">
+                        注册使用
+                    </a>
+                </div>
+            `;
+        }
+
+        function render() {
+            document.getElementById('top-grid').innerHTML = topAirports.map(createCard).join('');
+            document.getElementById('backup-grid').innerHTML = backupAirports.map(createCard).join('');
+        }
+
+        function filterTag(tag) {
+            document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active', 'bg-white/10'));
+            // Simple filter - can be expanded
+            render();
+        }
+
+        // Search
+        document.getElementById('search').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            // Basic client-side filter can be added here
+        });
+
+        render();
+    </script>
 </body>
 </html>
+```
