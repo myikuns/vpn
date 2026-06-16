@@ -188,8 +188,7 @@ const ruleProviders = {
   "Crypto": {
     ...ruleProviderCommon,
     "behavior": "classical",
-    "url": "
-"https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.yaml"",
+    "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.yaml",
     "path": "./ruleset/blackmatrix7/Crypto.yaml"
   },
 };
