@@ -188,11 +188,11 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
-  "DOMAIN-SUFFIX,googleapis.cn,Proxy", // Google服务
-  "DOMAIN-SUFFIX,gstatic.com,Proxy", // Google静态资源
-  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Proxy", // Google Play下载服务
-  "DOMAIN-SUFFIX,github.io,Proxy", // Github Pages
-  "DOMAIN,v2rayse.com,Proxy", // V2rayse节点工具
+  "DOMAIN-SUFFIX,googleapis.cn,节点列表", // Google服务
+  "DOMAIN-SUFFIX,gstatic.com,节点列表", // Google静态资源
+  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点列表", // Google Play下载服务
+  "DOMAIN-SUFFIX,github.io,节点列表", // Github Pages
+  "DOMAIN,v2rayse.com,节点列表", // V2rayse节点工具
   // Loyalsoldier 规则集
   "RULE-SET,applications,全局直连",
   "RULE-SET,private,全局直连",
@@ -207,9 +207,9 @@ const rules = [
   "RULE-SET,TikTok,TikTok",
   "RULE-SET,Crypto,虚拟货币",
   "RULE-SET,google,GoogleServer",
-  "RULE-SET,proxy,Proxy",
-  "RULE-SET,gfw,Proxy",
-  "RULE-SET,tld-not-cn,Proxy",
+  "RULE-SET,proxy,节点列表",
+  "RULE-SET,gfw,节点列表",
+  "RULE-SET,tld-not-cn,节点列表",
   "RULE-SET,direct,全局直连",
   "RULE-SET,lancidr,全局直连,no-resolve",
   "RULE-SET,cncidr,全局直连,no-resolve",
@@ -255,7 +255,7 @@ function main(config) {
     },
     {
       ...groupBaseOption,
-      "name": "Proxy",
+      "name": "节点列表",
       "type": "select",
       "proxies": ["延迟选优", "故障转移"],
       "include-all": true,
@@ -274,7 +274,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Telegram",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移", "全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
@@ -282,7 +282,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "YouTube",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移","全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移","全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
@@ -290,7 +290,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Netflix",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移", "全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/netflix.svg"
     },
@@ -299,14 +299,14 @@ function main(config) {
       "name": "AI",
       "type": "select",
       "include-all": true,
-      "proxies": ["Proxy", "延迟选优", "故障转移"],
+      "proxies": ["节点列表", "延迟选优", "故障转移"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
       ...groupBaseOption,
       "name": "虚拟货币",
       "type": "select",
-      "proxies": ["Proxy","延迟选优","故障转移","全局直连"],
+      "proxies": ["节点列表","延迟选优","故障转移","全局直连"],
       "include-all": true,
       "icon": "https://cryptologos.cc/logos/bitcoin-btc-logo.svg"
     },
@@ -314,7 +314,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "GoogleServer",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移","全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移","全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
@@ -323,14 +323,14 @@ function main(config) {
       "name": "TikTok",
       "type": "select",
       "include-all": true,
-      "proxies": ["Proxy", "延迟选优", "故障转移"],
+      "proxies": ["节点列表", "延迟选优", "故障转移"],
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
     {
       ...groupBaseOption,
       "name": "Microsoft",
       "type": "select",
-      "proxies": ["全局直连", "Proxy", "延迟选优"],
+      "proxies": ["全局直连", "节点列表", "延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
@@ -338,7 +338,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Apple",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移","全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移","全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
@@ -346,7 +346,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Spotify",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移","全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移","全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/spotify.svg"
     },
@@ -354,7 +354,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "动画疯",
       "type": "select",
-      "proxies": ["Proxy"],
+      "proxies": ["节点列表"],
       "include-all": true,
       "filter": "(?i)台|tw|TW",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/Bahamut.svg"
@@ -370,7 +370,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "全局直连",
       "type": "select",
-      "proxies": ["DIRECT", "Proxy", "延迟选优", "故障转移"],
+      "proxies": ["DIRECT", "节点列表", "延迟选优", "故障转移"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
@@ -385,7 +385,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "漏网之鱼",
       "type": "select",
-      "proxies": ["Proxy", "延迟选优", "故障转移","全局直连"],
+      "proxies": ["节点列表", "延迟选优", "故障转移","全局直连"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
