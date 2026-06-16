@@ -8,8 +8,7 @@ const foreignNameservers = [
   "https://208.67.222.222/dns-query", // OpenDNS
   "https://77.88.8.8/dns-query", //YandexDNS
   "https://1.1.1.1/dns-query", // CloudflareDNS
-  "https://8.8.4.4/dns-query", // GoogleDNS  
-
+  "https://8.8.4.4/dns-query", // GoogleDNS
 ];
 // DNS配置
 const dnsConfig = {
@@ -32,13 +31,13 @@ const dnsConfig = {
     // QQ快速登录检测失败
     "localhost.ptlogin2.qq.com",
     "localhost.sec.qq.com",
-      // 追加以下条目
+    // 追加以下条目
     "+.in-addr.arpa", 
     "+.ip6.arpa",
     "time.*.com",
     "time.*.gov",
     "pool.ntp.org",
-      // 腾讯系
+    // 腾讯系
     "+.qq.com",
     "+.qpic.cn",
     "+.gtimg.cn",
@@ -48,7 +47,7 @@ const dnsConfig = {
     // 微信快速登录检测失败
     "localhost.work.weixin.qq.com"
   ],
-  "default-nameserver": ["223.5.5.5","1.2.4.8"],//可修改成自己ISP的DNS
+  "default-nameserver": ["223.5.5.5"],//可修改成自己ISP的DNS
   "nameserver": [...foreignNameservers],
   "proxy-server-nameserver":[...domesticNameservers],
   "direct-nameserver":[...domesticNameservers],
@@ -194,18 +193,6 @@ const rules = [
   "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Proxy", // Google Play下载服务
   "DOMAIN-SUFFIX,github.io,Proxy", // Github Pages
   "DOMAIN,v2rayse.com,Proxy", // V2rayse节点工具
-  // 虚拟货币
-  "DOMAIN-SUFFIX,binance.com,虚拟货币",
-  "DOMAIN-SUFFIX,binance.me,虚拟货币",
-  "DOMAIN-SUFFIX,bybit.com,虚拟货币",
-  "DOMAIN-SUFFIX,okx.com,虚拟货币",
-  "DOMAIN-SUFFIX,gate.io,虚拟货币",
-  "DOMAIN-SUFFIX,mexc.com,虚拟货币",
-  "DOMAIN-SUFFIX,coinbase.com,虚拟货币",
-  "DOMAIN-SUFFIX,kraken.com,虚拟货币",
-  "DOMAIN-SUFFIX,tradingview.com,虚拟货币",
-  "DOMAIN-SUFFIX,coingecko.com,虚拟货币",
-  "DOMAIN-SUFFIX,coinmarketcap.com,虚拟货币",
   // Loyalsoldier 规则集
   "RULE-SET,applications,全局直连",
   "RULE-SET,private,全局直连",
@@ -242,7 +229,6 @@ const groupBaseOption = {
   "max-failed-times": 3,
   "hidden": false
 };
-
 // 程序入口
 function main(config) {
   const proxyCount = config?.proxies?.length ?? 0;
