@@ -1,271 +1,393 @@
- <!DOCTYPE html>
- <html lang="zh-CN">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>挂梯子 | 挂上梯子，扬帆出海</title>
-     <script src="https://cdn.tailwindcss.com"></script>
-     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-     <style>
-         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
-         * { margin: 0; padding: 0; box-sizing: border-box; }
-         
-         body { 
-             font-family: 'Noto Sans SC', sans-serif;
-             background: #000000;
-             position: relative;
-             overflow-x: hidden;
-         }
-         
-         body::before {
-             content: '';
-             position: fixed;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background: 
-                 radial-gradient(circle at 20% 30%, rgba(80,180,255,0.15) 0%, transparent 40%),
-                 radial-gradient(circle at 80% 70%, rgba(150,80,255,0.12) 0%, transparent 40%),
-                 radial-gradient(ellipse at 50% 100%, rgba(60,160,255,0.08) 0%, transparent 50%);
-             pointer-events: none;
-             z-index: 0;
-         }
-         
-         .glass-panel {
-             background: rgba(20,20,40,0.35);
-             backdrop-filter: blur(30px);
-             border: 1px solid rgba(100,200,255,0.25);
-             box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 20px rgba(100,200,255,0.1), inset 0 -1px 20px rgba(150,80,255,0.05);
-         }
-         
-         .glass-panel-lg {
-             background: rgba(15,15,35,0.4);
-             backdrop-filter: blur(40px);
-             border: 1.5px solid rgba(100,200,255,0.3);
-             box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 30px rgba(100,200,255,0.12), inset 0 -1px 30px rgba(150,80,255,0.08);
-         }
-         
-         .card {
-             background: rgba(15,18,40,0.5);
-             backdrop-filter: blur(25px);
-             border: 1.2px solid rgba(100,200,255,0.2);
-             box-shadow: 0 25px 60px rgba(0,0,0,0.4), inset 0 1px 15px rgba(100,200,255,0.15), inset 0 -1px 15px rgba(150,80,255,0.08);
-             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-             position: relative;
-             overflow: hidden;
-         }
-         
-         .card::after {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background: radial-gradient(circle at 50% 50%, rgba(100,200,255,0.1) 0%, transparent 70%);
-             opacity: 0;
-             transition: opacity 0.4s ease;
-             pointer-events: none;
-         }
-         
-         .card:hover {
-             transform: translateY(-20px) scale(1.02);
-             border-color: rgba(100,200,255,0.5);
-             background: rgba(20,28,60,0.65);
-             box-shadow: 0 40px 80px rgba(100,200,255,0.2), inset 0 2px 25px rgba(100,200,255,0.2), inset 0 -2px 25px rgba(150,80,255,0.1);
-         }
-         
-         .card:hover::after {
-             opacity: 1;
-         }
-         
-         .nav-glass {
-             background: rgba(10,12,30,0.5);
-             backdrop-filter: blur(35px);
-             border-bottom: 1px solid rgba(100,200,255,0.2);
-             box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 20px rgba(100,200,255,0.08);
-         }
-         
-         .btn-primary {
-             background: linear-gradient(135deg, rgba(100,200,255,0.25) 0%, rgba(100,180,255,0.15) 100%);
-             border: 1.2px solid rgba(100,200,255,0.5);
-             color: #a8e6ff;
-             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-             box-shadow: 0 15px 35px rgba(100,200,255,0.15), inset 0 1px 15px rgba(255,255,255,0.2);
-             font-weight: 600;
-         }
-         
-         .btn-primary:hover {
-             background: linear-gradient(135deg, rgba(100,200,255,0.4) 0%, rgba(100,180,255,0.3) 100%);
-             border-color: rgba(100,200,255,0.8);
-             box-shadow: 0 25px 50px rgba(100,200,255,0.3), inset 0 1px 20px rgba(255,255,255,0.3);
-             transform: translateY(-4px);
-         }
-         
-         .cta-btn {
-             background: linear-gradient(135deg, #4dd9ff 0%, #2eb8ff 100%);
-             color: #000818;
-             border: 1px solid rgba(255,255,255,0.4);
-             box-shadow: 0 20px 50px rgba(77,217,255,0.35), inset 0 1px 20px rgba(255,255,255,0.5), 0 0 30px rgba(77,217,255,0.2);
-             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-             font-weight: 600;
-         }
-         
-         .cta-btn:hover {
-             background: linear-gradient(135deg, #2eb8ff 0%, #0da8ff 100%);
-             box-shadow: 0 30px 70px rgba(77,217,255,0.5), inset 0 2px 25px rgba(255,255,255,0.6), 0 0 50px rgba(77,217,255,0.3);
-             transform: translateY(-6px) scale(1.05);
-         }
-         
-         .hero-section {
-             background: linear-gradient(180deg, rgba(80,180,255,0.1) 0%, transparent 50%, rgba(100,100,200,0.05) 100%);
-             position: relative;
-         }
-         
-         .section-title {
-             position: relative;
-             display: inline-block;
-             font-size: 2rem;
-             font-weight: 700;
-             background: linear-gradient(135deg, #50d9ff 0%, #a8d5ff 50%, #50d9ff 100%);
-             -webkit-background-clip: text;
-             -webkit-text-fill-color: transparent;
-             background-clip: text;
-             letter-spacing: 0.5px;
-         }
-         
-         .price-tag {
-             background: linear-gradient(135deg, rgba(77,217,255,0.2) 0%, rgba(80,180,255,0.12) 100%);
-             border: 1.2px solid rgba(77,217,255,0.5);
-             border-radius: 12px;
-             padding: 6px 14px;
-             display: inline-block;
-             font-weight: 700;
-             color: #4dd9ff;
-             box-shadow: 0 10px 30px rgba(77,217,255,0.2), inset 0 1px 10px rgba(255,255,255,0.15);
-             font-size: 14px;
-             letter-spacing: 0.5px;
-         }
-         
-         .footer-glass {
-             background: rgba(10,12,30,0.4);
-             border-top: 1px solid rgba(100,200,255,0.15);
-             backdrop-filter: blur(30px);
-             box-shadow: 0 -20px 50px rgba(0,0,0,0.4), inset 0 1px 20px rgba(100,200,255,0.08);
-         }
-         
-         .container { position: relative; z-index: 1; }
-     </style>
- </head>
- <body>
-     <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
-         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-             <div class="text-2xl font-bold" style="background: linear-gradient(135deg, #4dd9ff 0%, #a8d5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                 挂梯子
-             </div>
-             <div class="flex items-center gap-8 text-sm text-zinc-300">
-                 <a href="#top" class="hover:text-cyan-300 transition-all duration-300 hover:drop-shadow-lg">强烈推荐</a>
-                 <a href="#backup" class="hover:text-cyan-300 transition-all duration-300 hover:drop-shadow-lg">备用推荐</a>
-             </div>
-         </div>
-     </nav>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机场推荐 · 买对不买贵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#ffffff;--text:#1a1a1a;--text2:#555;--text3:#666;--card:#f8fafc;--card-hover:#ffffff;--alt:#f8faff;--border:rgba(0,0,0,0.04);--border2:rgba(0,0,0,0.02);--header-bg:rgba(255,255,255,0.8);--shadow:rgba(0,0,0,0.03);--shadow-hover:rgba(79,70,229,0.12);--accent:#4f46e5;--accent-light:#eef2ff;--faq-border:#f1f5f9;--nav-icon-bg:#f1f5f9}
+.dark{--bg:#0f0f0f;--text:#e5e5e5;--text2:#a3a3a3;--text3:#888;--card:#1a1a1a;--card-hover:#1e1e1e;--alt:#121212;--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.03);--header-bg:rgba(15,15,15,0.85);--shadow:rgba(0,0,0,0.2);--shadow-hover:rgba(79,70,229,0.15);--accent:#818cf8;--accent-light:#1e1e2e;--faq-border:#222;--nav-icon-bg:#222}
 
-     <header class="hero-section pt-32 pb-24 text-center">
-         <div class="container max-w-4xl mx-auto px-6">
-             <h1 class="text-7xl md:text-8xl font-bold mb-4 tracking-tighter" 
-                 style="background: linear-gradient(135deg, #ffffff 0%, #c8e6ff 50%, #4dd9ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 40px rgba(77,217,255,0.3);">
-                 挂上梯子
-             </h1>
-             <h2 class="text-5xl md:text-6xl font-bold mb-8 tracking-tight" 
-                 style="background: linear-gradient(135deg, #4dd9ff 0%, #a8d5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                 扬帆出海
-             </h2>
-             <p class="text-base text-zinc-400 tracking-widest font-light">2026年6月 · 实测低价机场推荐</p>
-         </div>
-     </header>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-     <div class="container max-w-7xl mx-auto px-6 pb-24">
-         <div class="mt-12 flex flex-wrap gap-4 justify-center">
-             <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank" 
-                class="btn-primary px-8 py-4 rounded-2xl font-medium hover:shadow-2xl">纯净IP</a>
-             <a href="https://tgsss.com/3A233F64" target="_blank" 
-                class="btn-primary px-8 py-4 rounded-2xl font-medium hover:shadow-2xl">海外账号</a>
-         </div>
+.header{position:fixed;top:0;left:0;width:100%;z-index:100;background:var(--header-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .3s}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 24px}
+.header-left{display:flex;align-items:center;gap:32px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px}
+.logo-icon{width:28px;height:28px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+.nav-links{display:flex;gap:24px;font-size:0.9rem;font-weight:500;color:var(--text2)}
+.nav-links a,.nav-dropdown>span{transition:color .2s;color:var(--text2);cursor:pointer}
+.nav-links a:hover,.nav-dropdown>span:hover{color:var(--accent)}
+.nav-dropdown{position:relative}
+.nav-dropdown-content{position:absolute;top:32px;left:0;background:var(--bg);border:1px solid var(--border);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.06);padding:8px;min-width:160px;opacity:0;visibility:hidden;transition:all .2s;z-index:200}
+.nav-dropdown:hover .nav-dropdown-content{opacity:1;visibility:visible}
+.nav-dropdown-content a{display:block;padding:8px 16px;border-radius:10px;font-size:0.85rem;color:var(--text2)}
+.nav-dropdown-content a:hover{background:var(--alt);color:var(--accent)}
+.header-right{display:flex;align-items:center;gap:12px}
+.icon-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--alt);border:none;cursor:pointer;transition:all .2s;color:var(--text2)}
+.icon-btn:hover{background:var(--accent-light);color:var(--accent)}
+@media(max-width:860px){.nav-links{display:none}}
 
-         <h2 id="top" class="section-title mt-24 mb-10 flex items-center gap-3 text-3xl">
-             ⭐ 强烈推荐
-         </h2>
-         <div id="top-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+.hero{padding:140px 0 80px;text-align:center;background:linear-gradient(180deg,var(--alt) 0%,var(--bg) 100%)}
+.hero h1{font-size:3.2rem;font-weight:800;letter-spacing:-0.04em;line-height:1.12;max-width:700px;margin:0 auto 16px;color:var(--text)}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text3);font-size:1.15rem;line-height:1.7;max-width:560px;margin:0 auto 40px}
+.hero-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-cta-primary{background:var(--accent);color:#fff;padding:14px 36px;border-radius:999px;font-weight:600;font-size:1rem;transition:all .25s}
+.hero-cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,70,229,0.2)}
+.hero-cta-secondary{background:var(--alt);color:var(--text);padding:14px 36px;border-radius:999px;font-weight:600;font-size:1rem;transition:all .25s}
+.hero-cta-secondary:hover{background:var(--card-hover)}
+.hero-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.hero-link{background:var(--alt);color:var(--text);padding:10px 22px;border-radius:999px;font-size:0.88rem;font-weight:500;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.hero-link:hover{background:var(--card-hover);color:var(--accent)}
 
-         <h2 id="backup" class="section-title mt-28 mb-10 flex items-center gap-3 text-3xl">
-             🔄 备用推荐
-         </h2>
-         <div id="backup-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+.section-title{text-align:center;margin-bottom:48px}
+.section-title h2{font-size:2rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px;color:var(--text)}
+.section-title p{color:var(--text3);font-size:0.95rem}
 
-         <div class="glass-panel-lg rounded-3xl p-12 mt-28">
-             <h3 class="text-2xl font-bold mb-6" style="background: linear-gradient(135deg, #4dd9ff 0%, #a8d5ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                 影视 / Emby 推荐
-             </h3>
-             <div class="space-y-4 text-zinc-300">
-                 <p class="text-lg font-semibold">悦通 & 雪山Link</p>
-                 <p class="leading-relaxed text-zinc-400">悦通永久期限但资源较少，雪山是按照套餐时间赠送EMBY时间资源丰富！</p>
-             </div>
-         </div>
-     </div>
+.rank-card{display:flex;align-items:center;gap:24px;background:var(--card);border-radius:20px;padding:24px 32px;box-shadow:0 2px 8px var(--shadow);border:1px solid var(--border2);transition:all .4s cubic-bezier(0.22,1,0.36,1);will-change:transform;opacity:0;transform:translateX(-20px)}
+.rank-card.animate{animation:slideIn .5s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes slideIn{0%{opacity:0;transform:translateX(-24px)}100%{opacity:1;transform:translateX(0)}}
+.rank-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px -12px var(--shadow-hover);background:var(--card-hover);border-color:rgba(79,70,229,0.06)}
+.rank-num{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem;flex-shrink:0}
+.rank-1{background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;box-shadow:0 4px 12px rgba(245,158,11,0.25)}
+.rank-2{background:linear-gradient(135deg,#a78bfa,#818cf8);color:#fff;box-shadow:0 4px 12px rgba(129,140,248,0.25)}
+.rank-3{background:linear-gradient(135deg,#60a5fa,#3b82f6);color:#fff;box-shadow:0 4px 12px rgba(59,130,246,0.2)}
+.rank-4{background:var(--alt);color:var(--text2)}
+.rank-5{background:var(--alt);color:var(--text2)}
+.rank-info{flex:1;min-width:0}
+.rank-header{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.rank-name{font-size:1.15rem;font-weight:700}
+.rank-price{font-size:0.8rem;font-weight:600;color:var(--accent);background:rgba(79,70,229,0.06);padding:4px 12px;border-radius:999px;white-space:nowrap}
+.rank-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:0.7rem;font-weight:600;letter-spacing:0.02em}
+.tag-speed{background:#dbeafe;color:#2563eb}
+.tag-price{background:#d1fae5;color:#059669}
+.tag-nodes{background:#fef3c7;color:#d97706}
+.tag-media{background:#ede9fe;color:#7c3aed}
+.rank-desc{color:var(--text2);font-size:0.9rem;line-height:1.5;margin:6px 0 0}
+.rank-btn{flex-shrink:0;padding:10px 24px;border-radius:12px;font-weight:600;font-size:0.9rem;transition:all .25s;background:var(--accent-light);color:var(--accent);white-space:nowrap}
+.rank-btn:hover{background:var(--accent);color:#fff}
 
-     <footer class="footer-glass py-16 text-center">
-         <div class="container max-w-7xl mx-auto px-6">
-             <a href="https://github.com/myikuns/vpnproxy" target="_blank" class="text-zinc-400 hover:text-cyan-300 transition-all duration-300">
-                 挂上梯子，扬帆出海
-             </a>
-         </div>
-     </footer>
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.card{background:var(--card);border-radius:20px;padding:28px;box-shadow:0 2px 8px var(--shadow);border:1px solid var(--border2);transition:all .4s cubic-bezier(0.22,1,0.36,1)}
+.card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 48px -12px var(--shadow-hover);background:var(--card-hover);border-color:rgba(79,70,229,0.08)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.card-name{font-size:1.2rem;font-weight:700}
+.card-price{font-size:0.85rem;font-weight:600;color:var(--accent);background:rgba(79,70,229,0.06);padding:4px 12px;border-radius:999px;white-space:nowrap}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.card-desc{color:var(--text2);font-size:0.9rem;line-height:1.6;margin-bottom:18px}
+.card-btn{display:block;text-align:center;padding:12px 0;border-radius:12px;font-weight:600;font-size:0.9rem;transition:all .25s;background:var(--accent-light);color:var(--accent)}
+.card-btn:hover{background:var(--accent);color:#fff}
 
-     <script>
-         const topAirports = [
-             {name:"TAG",price:"¥114/500GB",desc:"250+高速线路 家宽 覆盖100+国家 全解锁",link:"https://558343.dedicated-afflink.com/#/auth/dvmePpjQ"},
-             {name:"奶昔",price:"¥74.55/200GB",desc:"主流节点 速度快 全流媒体+AI解锁",link:"https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643"},
-             {name:"苏菲家宽",price:"¥50/800GB 星链",desc:"星链家宽 IEPL专线 真实住宅",link:"https://sufe.pro/#/register?code=TBGuIiAi"},
-             {name:"肯の机",price:"¥35/100GB",desc:"三网优化 全1倍率 2Gbps 家宽节点",link:"https://kendeji.io/#/auth?invite=uu15Kzxj"},
-             {name:"雪山Link",price:"¥9.9/500GB",desc:"高质量节点 Emby 商宽专属",link:"https://www.xueshan.shop/#/register?code=h0lPgItf"},
-             {name:"悦通",price:"¥12.9/1TB",desc:"家宽套餐 Emby永久 链式代理",link:"https://my.yue.to/#/register?code=JqCr6Tpn"},
-             {name:"落云",price:"¥7/300GB",desc:"稀缺IP 原生住宅 可改抖音小红书",link:"https://88888.ee88.tk/#/register?code=UVI42l9q"},
-             {name:"XSUS",price:"¥12/168GB",desc:"家宽节点 三年老牌 游戏低延迟",link:"https://xsus3.com/register?code=6LiiWirT"},
-             {name:"XFLTD",price:"¥7/150GB",desc:"六年老牌 香港日本台湾美国节点",link:"https://www.xfltd.org/#/register?code=ptlnb86g"},
-             {name:"搅局者",price:"¥16.9不限量",desc:"注:无限流量 无速度限制。限制设备2台",link:"https://搅局者.com/#/register?code=PWV5Y7dc"}
-         ];
+.coupon-card{background:var(--card);border-radius:20px;padding:24px;border:1px solid var(--border2);box-shadow:0 2px 8px var(--shadow);transition:all .35s}
+.coupon-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px -6px rgba(0,0,0,0.06)}
+.coupon-name{font-weight:700;font-size:1.05rem;margin-bottom:6px}
+.coupon-desc{color:var(--text2);font-size:0.9rem;margin-bottom:14px;line-height:1.5}
+.coupon-code-wrap{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.coupon-code{flex:1;padding:8px 14px;border-radius:10px;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:0.9rem;font-family:monospace;border:1px dashed #c7d2fe;cursor:pointer;transition:background .2s;text-align:center}
+.coupon-code:hover{background:#e0e7ff}
+.coupon-expire{color:var(--text3);font-size:0.8rem}
 
-         const backupAirports = [
-             {name:"良心云",price:"¥2/100GB",desc:"三网优化 流媒体+AI",link:"https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3"},
-             {name:"狗子云",price:"¥3/168GB",desc:"住宅IP 低价",link:"https://gz-cloud.top/#/register?code=kDV2n3tI"},
-             {name:"墨菲云",price:"¥3.20/222GB",desc:"直连+家宽 0.1x节点",link:"https://portal.mofeiyun.com/#/register?code=h3fwdY8y"},
-             {name:"赔钱机场",price:"¥1.5/100GB",desc:"经济实惠 老牌",link:"https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw"},
-             {name:"一分机场",price:"¥2/100GB",desc:"三网优化，老牌机场，速度快",link:"https://一分机场.com/#/register?code=dP76b44a"},
-             {name:"XSWL",price:"¥2/500GB",desc:"移动最佳！稳定解锁流媒体",link:"https://xswl-cloud.com/#/register?code=TnsF16ZW"},
-             {name:"果冻加速",price:"¥9.9/不限量",desc:"速度快 无审计 PT下载",link:"https://naichachong.com/#/register?code=yO3p6doW"}
-         ];
+.faq-item{border-bottom:1px solid var(--faq-border);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;font-weight:600;font-size:1rem;user-select:none;transition:color .2s;color:var(--text)}
+.faq-q:hover{color:var(--accent)}
+.faq-q-arrow{transition:transform .3s;color:var(--text3);font-size:1.2rem}
+.faq-item.open .faq-q-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0;color:var(--text2);line-height:1.7;font-size:0.9rem}
+.faq-item.open .faq-a{max-height:400px;padding:0 0 22px}
 
-         function createCard(a) {
-             return `
-                 <div class="group">
-                     <div class="card rounded-3xl p-8 h-full flex flex-col relative">
-                         <div class="flex justify-between items-start mb-6">
-                             <h3 class="font-bold text-2xl text-white">${a.name}</h3>
-                             <span class="price-tag">${a.price}</span>
-                         </div>
-                         <p class="text-zinc-300 flex-1 leading-relaxed text-sm">${a.desc}</p>
-                         <a href="${a.link}" target="_blank" 
-                            class="cta-btn mt-8 block text-center py-4 rounded-2xl transition-all duration-300 group-hover:shadow-2xl">
-                             注册使用
-                         </a>
-                     </div>
-                 </div>
-             `;
-         }
+.footer{border-top:1px solid var(--faq-border);padding:36px 0;text-align:center;color:var(--text3);font-size:0.85rem;line-height:1.8}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 
-         document.getElementById('top-grid').innerHTML = topAirports.map(createCard).join('');
-         document.getElementById('backup-grid').innerHTML = backupAirports.map(createCard).join('');
-     </script>
- </body>
- </html>
+.card-entrance{opacity:0;transform:translateY(30px)}
+.card-entrance.animate{animation:fadeUp .5s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+
+.nav-site{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:800px;margin:0 auto}
+.nav-site a{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:16px;padding:16px 20px;border:1px solid var(--border2);transition:all .2s;box-shadow:0 1px 4px var(--shadow)}
+.nav-site a:hover{background:var(--card-hover);border-color:rgba(79,70,229,0.08);box-shadow:0 8px 24px rgba(0,0,0,0.04);transform:translateY(-2px)}
+.nav-site-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;object-fit:contain;background:var(--nav-icon-bg);padding:4px}
+.nav-site-icon.fallback{display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--text2);padding:0}
+.nav-site-text{flex:1;min-width:0}
+.nav-site-title{font-weight:600;font-size:0.95rem;margin-bottom:2px;color:var(--text)}
+.nav-site-desc{color:var(--text3);font-size:0.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-cat-title{font-size:1.3rem;font-weight:700;margin:40px 0 20px;letter-spacing:-0.02em;color:var(--text)}
+.nav-cat-title:first-of-type{margin-top:0}
+
+@media(max-width:860px){.grid-3{grid-template-columns:1fr 1fr}.hero h1{font-size:2.4rem}.rank-card{flex-wrap:wrap;gap:16px}.rank-btn{width:100%;text-align:center}.nav-site{grid-template-columns:1fr}}
+@media(max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}.hero h1{font-size:1.9rem}.hero{padding:120px 0 60px}.rank-card{padding:20px}}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .55s cubic-bezier(0.22,1,0.36,1),transform .55s cubic-bezier(0.22,1,0.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.section{padding:80px 0}
+.section-alt{background:var(--alt);transition:background .3s}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">&#9992;</span>
+        机场推荐
+      </div>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <span>机场推荐</span>
+          <div class="nav-dropdown-content">
+            <a href="#rank">&#127942; 本月榜单</a>
+            <a href="#primary">&#11088; 主力推荐</a>
+            <a href="#backup-sec">&#128260; 备用推荐</a>
+          </div>
+        </div>
+        <a href="#coupon">优惠码</a>
+        <a href="#nav">网址导航</a>
+        <a href="#faq">使用教程</a>
+      </div>
+    </div>
+    <div class="header-right">
+      <a href="https://github.com/myikuns/vpnproxy" target="_blank" class="icon-btn" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <button class="icon-btn" onclick="toggleDark()" aria-label="切换暗色模式">
+        <svg id="dark-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="reveal visible">
+      <h1>2026 机场推荐 &#183; <em>买对不买贵</em></h1>
+      <p>实测 50+ 家机场，选出最稳最快性价比最高的推荐榜单。不接广告，纯自费评测，每月更新。</p>
+      <div class="hero-cta-row">
+        <a href="#primary" class="hero-cta-primary">查看主力推荐</a>
+        <a href="#coupon" class="hero-cta-secondary">限时优惠</a>
+      </div>
+      <div class="hero-links">
+        <a href="https://tgsss.com/3A233F64" target="_blank" class="hero-link">&#128179; 海外账号购买</a>
+        <a href="https://share.cliproxy.com/share/f57m8w8j2" target="_blank" class="hero-link">&#127758; 静态/动态家宽IP</a>
+        <a href="#nav" class="hero-link">&#128279; 网址导航</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rank" class="section">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#127942; 2026 年 6 月机场推荐榜单</h2>
+      <p>综合速度、价格、稳定性、流媒体解锁能力，选出本月 Top 5</p>
+    </div>
+    <div id="rank-list" style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:16px"></div>
+  </div>
+</section>
+
+<section id="primary" class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#11088; 主力推荐</h2>
+      <p>经过长期验证，稳定可靠的选择</p>
+    </div>
+    <div id="second-grid" class="grid-3"></div>
+  </div>
+</section>
+
+<section id="backup-sec" class="section">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#128260; 备用推荐</h2>
+      <p>低价实惠，适合预算有限的用户</p>
+    </div>
+    <div id="backup-grid" class="grid-3"></div>
+  </div>
+</section>
+
+<section id="coupon" class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#128176; 限时优惠 &#183; 立省 20%</h2>
+      <p>通过本站专属优惠码下单更划算</p>
+    </div>
+    <div id="coupon-grid" class="grid-2"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#127916; 影视 / Emby 推荐</h2>
+      <p>机场搭配 Emby 解锁流畅观影体验</p>
+    </div>
+    <div class="reveal" style="background:var(--card);border-radius:24px;padding:40px;box-shadow:0 2px 8px var(--shadow);max-width:600px;margin:0 auto;text-align:center;border:1px solid var(--border2)">
+      <div style="font-size:1.2rem;font-weight:700;margin-bottom:8px;color:var(--text)">悦通 &amp; 雪山Link</div>
+      <div style="color:var(--text2);line-height:1.7">悦通永久期限但资源较少，雪山按照套餐赠送 Emby 时长，资源丰富！</div>
+    </div>
+  </div>
+</section>
+
+<section id="nav" class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>&#128279; 网址导航</h2>
+      <p>出海常用网站汇总</p>
+    </div>
+    <div class="reveal">
+      <div class="nav-cat-title">AI</div>
+      <div class="nav-site">
+        <a href="https://chatgpt.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>C</div>'"><div class="nav-site-text"><div class="nav-site-title">ChatGPT</div><div class="nav-site-desc">OpenAI 的人工智能聊天机器人程序。</div></div></a>
+        <a href="https://chat.deepseek.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>D</div>'"><div class="nav-site-text"><div class="nav-site-title">DeepSeek</div><div class="nav-site-desc">深度求索的人工智能大型语言模型。</div></div></a>
+        <a href="https://gemini.google.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=gemini.google.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>G</div>'"><div class="nav-site-text"><div class="nav-site-title">Gemini</div><div class="nav-site-desc">Google 的生成式人工智能聊天机器人。</div></div></a>
+        <a href="https://grok.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=grok.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>G</div>'"><div class="nav-site-text"><div class="nav-site-title">Grok</div><div class="nav-site-desc">xAI 的生成式人工智能聊天机器人。</div></div></a>
+        <a href="https://claude.ai/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>C</div>'"><div class="nav-site-text"><div class="nav-site-title">Claude</div><div class="nav-site-desc">Anthropic 的大型语言模型。</div></div></a>
+      </div>
+
+      <div class="nav-cat-title">流媒体</div>
+      <div class="nav-site">
+        <a href="https://www.youtube.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>Y</div>'"><div class="nav-site-text"><div class="nav-site-title">YouTube</div><div class="nav-site-desc">全球最大的视频搜索和分享平台。</div></div></a>
+        <a href="https://www.netflix.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=netflix.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>N</div>'"><div class="nav-site-text"><div class="nav-site-title">Netflix</div><div class="nav-site-desc">网络视频点播的 OTT 服务网站。</div></div></a>
+        <a href="https://www.disneyplus.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=disneyplus.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>D</div>'"><div class="nav-site-text"><div class="nav-site-title">Disney+</div><div class="nav-site-desc">迪士尼的在线流媒体视频点播平台。</div></div></a>
+        <a href="https://www.primevideo.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=primevideo.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>P</div>'"><div class="nav-site-text"><div class="nav-site-title">Prime Video</div><div class="nav-site-desc">亚马逊的互联网视频点播服务。</div></div></a>
+        <a href="https://www.hulu.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=hulu.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>H</div>'"><div class="nav-site-text"><div class="nav-site-title">Hulu</div><div class="nav-site-desc">网络付费随选流影片及影视节目的 OTT 服务网站。</div></div></a>
+      </div>
+
+      <div class="nav-cat-title">社交媒体</div>
+      <div class="nav-site">
+        <a href="https://www.instagram.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=instagram.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>I</div>'"><div class="nav-site-text"><div class="nav-site-title">Instagram</div><div class="nav-site-desc">在线图片及视频分享的社群应用程序。</div></div></a>
+        <a href="https://x.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=x.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>X</div>'"><div class="nav-site-text"><div class="nav-site-title">X</div><div class="nav-site-desc">全球顶尖的社交媒体平台之一。</div></div></a>
+        <a href="https://www.reddit.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=reddit.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>R</div>'"><div class="nav-site-text"><div class="nav-site-title">Reddit</div><div class="nav-site-desc">娱乐、社交及新闻网站。</div></div></a>
+        <a href="https://web.telegram.org/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=telegram.org&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>T</div>'"><div class="nav-site-text"><div class="nav-site-title">Telegram</div><div class="nav-site-desc">跨平台的即时通信软件。</div></div></a>
+      </div>
+
+      <div class="nav-cat-title">电子邮件</div>
+      <div class="nav-site">
+        <a href="https://outlook.live.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=outlook.live.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>O</div>'"><div class="nav-site-text"><div class="nav-site-title">Outlook</div><div class="nav-site-desc">微软的免费互联网收发电子邮件服务。</div></div></a>
+        <a href="https://gmail.google.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=gmail.google.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>G</div>'"><div class="nav-site-text"><div class="nav-site-title">Gmail</div><div class="nav-site-desc">Google 的免费电子邮件服务。</div></div></a>
+        <a href="https://mail.proton.me/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=proton.me&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>P</div>'"><div class="nav-site-text"><div class="nav-site-title">Proton Mail</div><div class="nav-site-desc">端到端加密的电子邮件服务。</div></div></a>
+        <a href="https://temp-mail.org/zh/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=temp-mail.org&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>T</div>'"><div class="nav-site-text"><div class="nav-site-title">Temp Mail</div><div class="nav-site-desc">匿名的一次性电子邮件。</div></div></a>
+      </div>
+
+      <div class="nav-cat-title">在线工具</div>
+      <div class="nav-site">
+        <a href="https://telegra.ph/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=telegra.ph&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>T</div>'"><div class="nav-site-text"><div class="nav-site-title">Telegraph</div><div class="nav-site-desc">Telegram 的内容发布网站。</div></div></a>
+        <a href="https://reurl.cc/main/cn" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=reurl.cc&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>R</div>'"><div class="nav-site-text"><div class="nav-site-title">Reurl</div><div class="nav-site-desc">短链接在线生成。</div></div></a>
+        <a href="https://sub-web.netlify.app/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=netlify.app&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>S</div>'"><div class="nav-site-text"><div class="nav-site-title">Subscription Converter</div><div class="nav-site-desc">各种订阅链接生成。</div></div></a>
+      </div>
+
+      <div class="nav-cat-title">网络监控</div>
+      <div class="nav-site">
+        <a href="https://fast.com/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=fast.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>F</div>'"><div class="nav-site-text"><div class="nav-site-title">Fast</div><div class="nav-site-desc">奈飞的简单网速测试。</div></div></a>
+        <a href="https://whoer.net/zh" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=whoer.net&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>W</div>'"><div class="nav-site-text"><div class="nav-site-title">Whoer</div><div class="nav-site-desc">IP 伪装度检测。</div></div></a>
+        <a href="https://ippure.com/" target="_blank"><div class="nav-site-icon fallback">P</div><div class="nav-site-text"><div class="nav-site-title">ippure</div><div class="nav-site-desc">IP 纯净度检测。</div></div></a>
+        <a href="https://browserleaks.com/dns" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=browserleaks.com&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>B</div>'"><div class="nav-site-text"><div class="nav-site-title">BrowserLeaks</div><div class="nav-site-desc">DNS 泄露检测。</div></div></a>
+        <a href="https://ipcheck.ing/" target="_blank"><img class="nav-site-icon" src="https://www.google.com/s2/favicons?domain=ipcheck.ing&sz=40" alt="" onerror="this.outerHTML='<div class=\'nav-site-icon fallback\'>I</div>'"><div class="nav-site-text"><div class="nav-site-title">IPCheck</div><div class="nav-site-desc">好用和开源的全能 IP 工具箱。</div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="container" style="max-width:720px">
+    <div class="section-title reveal">
+      <h2>&#10067; 第一次买机场？看这篇就够了</h2>
+      <p>5 个常见问题，帮你快速上手</p>
+    </div>
+    <div class="reveal">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">机场和 VPN 有什么区别？<span class="faq-q-arrow">&#9660;</span></div>
+        <div class="faq-a">VPN 是设备级别的全局加密隧道，所有流量都经过它。机场使用代理协议（Shadowsocks / V2Ray / Trojan），只接管需要代理的流量，不影响国内网站访问速度，更灵活、延迟更低。机场的节点数量和线路选择通常远多于传统 VPN。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">怎么判断一家机场好不好？<span class="faq-q-arrow">&#9660;</span></div>
+        <div class="faq-a">看四个维度：线路质量（IEPL/IPLC 专线优于普通中转）、延迟和丢包率、流媒体解锁能力（Netflix / Disney+ / ChatGPT 等）、售后和稳定性。建议先买月付或试用期测试，不要直接上车年付。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">月付还是年付划算？<span class="faq-q-arrow">&#9660;</span></div>
+        <div class="faq-a">第一次建议月付，先用 1-2 个月测试稳定性和速度是否符合你的需求。确定稳定后再考虑季付或年付，通常年付有 15%-30% 的折扣。但注意：不要一次性买超过一年的套餐，行业变化快。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">节点越多越好吗？<span class="faq-q-arrow">&#9660;</span></div>
+        <div class="faq-a">不是。节点数量是个数字游戏，很多机场用几十个垃圾节点凑数。关键看节点的线路质量、带宽大小和实际可用性。一家有 20 条 IEPL 专线节点的机场，远比有 200 条普通中转节点的机场好用。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">新手推荐哪家？<span class="faq-q-arrow">&#9660;</span></div>
+        <div class="faq-a">如果预算充足，TAG 和奶昔综合体验最好，速度快、节点多、流媒体全解锁。如果追求性价比，悦通和雪山 Link 是很好的入门选择，月付十几块钱就能获得不错的体验。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>本站为自行付费评测，不提供服务，仅供参考！</p>
+    <p style="margin-top:4px">&copy; 2026 机场推荐 &#183; 买对不买贵 | 所有数据均为实测结果，与各机场无商业合作</p>
+  </div>
+</footer>
+
+<script>
+function toggleDark(){
+  document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+}
+if(localStorage.getItem('theme')==='dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme:dark)').matches)){
+  document.documentElement.classList.add('dark');
+}
+
+var topAirports = [
+  {name:"TAG",price:"¥114/500GB",desc:"250+高速线路 家宽 覆盖100+国家 全解锁",tags:["速度快","节点多","支持流媒体"],link:"https://558343.dedicated-afflink.com/#/auth/dvmePpjQ"},
+  {name:"奶昔",price:"¥74.55/200GB",desc:"主流节点 速度快 全流媒体+AI解锁",tags:["速度快","支持流媒体","价格低"],link:"https://nxonearth.com/signupbyemail.aspx?MemberCode=a382c243c1454800a5680e4ff54aa67220260518153643"},
+  {name:"苏菲家宽",price:"¥50/800GB 星链",desc:"星链家宽 IEPL专线 真实住宅IP",tags:["节点多","速度快","支持流媒体"],link:"https://sufe.pro/#/register?code=TBGuIiAi"},
+  {name:"肯の机",price:"¥40/100GB",desc:"三网优化 全1倍率 2Gbps 家宽节点",tags:["速度快","价格低","节点多"],link:"https://kendeji.io/#/auth?invite=uu15Kzxj"},
+];
+var secondAirports = [
+  {name:"悦通",price:"¥14.9/1TB",desc:"家宽套餐 Emby永久 链式代理（推荐购买带💎的套餐、普通套餐一般）",tags:["价格低","节点多","支持流媒体"],link:"https://my.yue.to/#/register?code=JqCr6Tpn"},
+  {name:"雪山Link",price:"¥9.9/500GB",desc:"高质量节点 Emby 商宽专属",tags:["价格低","支持流媒体"],link:"https://www.xueshan.shop/#/register?code=h0lPgItf"}
+  {name:"落云",price:"¥9/300GB",desc:"稀缺IP 原生住宅 可改抖音小红书",tags:["价格低","节点多"],link:"https://88888.ee88.tk/#/register?code=UVI42l9q"},
+  {name:"XSUS",price:"¥12/168GB",desc:"家宽节点 三年老牌 游戏低延迟",tags:["价格低","节点多"],link:"https://xsus3.com/register?code=6LiiWirT"},
+  {name:"良心云",price:"¥2/100GB",desc:"三网优化 流媒体+AI",tags:["价格低"],link:"https://xn--9kqz23b19z.com/#/register?code=yZcE4Uf3"},
+  {name:"果冻加速",price:"¥9.9/不限量",desc:"速度快 无审计 PT下载",tags:["价格低","速度快"],link:"https://naichachong.com/#/register?code=yO3p6doW"}
+];
+var backupAirports = [
+  {name:"狗子云",price:"¥3/168GB",desc:"住宅IP 低价",tags:["价格低"],link:"https://gz-cloud.top/#/register?code=kDV2n3tI"},
+  {name:"墨菲云",price:"¥3.20/222GB",desc:"直连+家宽 0.1x节点,套餐长期95折",tags:["价格低"],link:"https://portal.mofeiyun.com/#/register?code=h3fwdY8y"},
+  {name:"赔钱机场",price:"¥1.5/100GB",desc:"经济实惠 老牌",tags:["价格低"],link:"https://xn--mes358aby2apfg.com/register?code=esmud6xa&cover=sfw"},
+  {name:"一分机场",price:"¥2/100GB",desc:"三网优化，老牌机场，速度快",tags:["价格低"],link:"https://一分机场.com/#/register?code=dP76b44a"},
+];
+var coupons = [
+  {name:"悦通",desc:"618打7折",code:"YUE618",expire:"暂无"}
+  {name:"良心云",desc:"端午活动",code:"LXY",expire:"2026年6月22日23点59分"},
+  {name:"一分机场",desc:"端午活动",code:"DW",expire:"2026年6月22日19点"},
+  {name:"赔钱机场",desc:"端午活动",code:"端午",expire:"2026年6月21日23点59分"},
+];
+
+function tagClass(t){var m={'速度快':'tag-speed','价格低':'tag-price','节点多':'tag-nodes','支持流媒体':'tag-media'};return m[t]||'tag-speed'}
+function rankClass(i){return i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':i===3?'rank-4':'rank-5'}
+
+document.getElementById('rank-list').innerHTML = topAirports.map(function(a,i){
+  return '<div class="rank-card"><div class="rank-num '+rankClass(i)+'">'+(i+1)+'</div><div class="rank-info"><div class="rank-header"><span class="rank-name">'+a.name+'</span><span class="rank-price">'+a.price+'</span></div><div class="rank-tags">'+a.tags.map(function(t){return '<span class="tag '+tagClass(t)+'">'+t+'</span>'}).join('')+'</div><div class="rank-desc">'+a.desc+'</div></div><a href="'+a.link+'" target="_blank" class="rank-btn">查看详情</a></div>';
+}).join('');
+
+function cardHTML(a){return '<div class="card card-entrance" style="display:flex;flex-direction:column"><div class="card-top"><div class="card-name">'+a.name+'</div><div class="card-price">'+a.price+'</div></div><div class="card-tags">'+a.tags.map(function(t){return '<span class="tag '+tagClass(t)+'">'+t+'</span>'}).join('')+'</div><div class="card-desc">'+a.desc+'</div><a href="'+a.link+'" target="_blank" class="card-btn" style="margin-top:auto">查看详情</a></div>';}
+
+document.getElementById('second-grid').innerHTML = secondAirports.map(cardHTML).join('');
+document.getElementById('backup-grid').innerHTML = backupAirports.map(cardHTML).join('');
+document.getElementById('coupon-grid').innerHTML = coupons.map(function(c){return '<div class="coupon-card reveal"><div class="coupon-name">'+c.name+'</div><div class="coupon-desc">'+c.desc+'</div><div class="coupon-code-wrap"><div class="coupon-code" onclick="navigator.clipboard.writeText(\''+c.code+'\');this.textContent=\'已复制!\'">'+c.code+'</div></div><div class="coupon-expire">有效期至 '+c.expire+'</div></div>';}).join('');
+
+setTimeout(function(){document.querySelectorAll('.rank-card').forEach(function(el,i){setTimeout(function(){el.classList.add('animate')},i*100)})},200);
+document.querySelectorAll('.card-entrance').forEach(function(el,i){setTimeout(function(){el.classList.add('animate')},i*80)});
+
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');var sec=e.target.closest('.section')||e.target.closest('section');if(sec){sec.querySelectorAll('.card-entrance:not(.animate)').forEach(function(c,j){setTimeout(function(){c.classList.add('animate')},j*80+100)});sec.querySelectorAll('.rank-card:not(.animate)').forEach(function(c,j){setTimeout(function(){c.classList.add('animate')},j*100+100)})}obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){obs.observe(el)});
+setTimeout(function(){document.querySelectorAll('#coupon-grid .reveal').forEach(function(el){obs.observe(el)})},100);
+</script>
+</body>
+</html>
