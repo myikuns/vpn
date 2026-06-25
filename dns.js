@@ -249,11 +249,6 @@ const rules = [
   "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点列表",
   "DOMAIN-SUFFIX,github.io,节点列表",
   "DOMAIN,v2rayse.com,节点列表",
-  "GEOIP,HK,香港节点,no-resolve",
-  "GEOIP,TW,台湾节点,no-resolve",
-  "GEOIP,JP,日本节点,no-resolve",
-  "GEOIP,SG,新加坡节点,no-resolve",
-  "GEOIP,US,美国节点,no-resolve",
   "RULE-SET,applications,全局直连",
   "RULE-SET,private,全局直连",
   "RULE-SET,reject,广告过滤",
@@ -315,7 +310,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "节点列表",
       "type": "select",
-      "proxies": ["香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "延迟选优", "故障转移"],
+      "proxies": ["延迟选优", "故障转移"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
@@ -342,7 +337,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Telegram",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg"
     },
@@ -350,7 +345,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "YouTube",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/youtube.svg"
     },
@@ -358,7 +353,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Netflix",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/netflix.svg"
     },
@@ -367,14 +362,14 @@ function main(config) {
       "name": "AI",
       "type": "select",
       "include-all": true,
-      "proxies": ["节点列表", "延迟选优", "故障转移", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移"],
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg"
     },
     {
       ...groupBaseOption,
       "name": "Steam",
       "type": "select",
-      "proxies": ["全局直连", "节点列表", "延迟选优", "故障转移", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["全局直连", "节点列表", "延迟选优", "故障转移"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/steam.svg"
     },
@@ -382,7 +377,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "虚拟货币",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://cryptologos.cc/logos/bitcoin-btc-logo.svg"
     },
@@ -390,7 +385,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "GoogleServer",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg"
     },
@@ -399,14 +394,14 @@ function main(config) {
       "name": "TikTok",
       "type": "select",
       "include-all": true,
-      "proxies": ["节点列表", "延迟选优", "故障转移", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移"],
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/tiktok.svg"
     },
     {
       ...groupBaseOption,
       "name": "Microsoft",
       "type": "select",
-      "proxies": ["全局直连", "节点列表", "延迟选优", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["全局直连", "节点列表", "延迟选优"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg"
     },
@@ -414,7 +409,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "Apple",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg"
     },
@@ -422,55 +417,10 @@ function main(config) {
       ...groupBaseOption,
       "name": "动画疯",
       "type": "select",
-      "proxies": ["节点列表", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表"],
       "include-all": true,
       "filter": "(?i)台|tw|TW",
       "icon": "https://fastly.jsdelivr.net/gh/xiaolin-007/clash@main/icon/Bahamut.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "香港节点",
-      "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
-      "include-all": true,
-      "filter": "(?i)香港|hk|HK|Hong.?Kong",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "台湾节点",
-      "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
-      "include-all": true,
-      "filter": "(?i)台|tw|TW|Taiwan",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/tw.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "日本节点",
-      "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
-      "include-all": true,
-      "filter": "(?i)日本|jp|JP|Japan|Tokyo",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/jp.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "新加坡节点",
-      "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
-      "include-all": true,
-      "filter": "(?i)新加坡|sg|SG|Singapore",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/sg.svg"
-    },
-    {
-      ...groupBaseOption,
-      "name": "美国节点",
-      "type": "select",
-      "proxies": ["延迟选优", "故障转移"],
-      "include-all": true,
-      "filter": "(?i)美国|us|US|United.?States|USA|Los.?Angeles|New.?York",
-      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/us.svg"
     },
     {
       ...groupBaseOption,
@@ -483,7 +433,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "全局直连",
       "type": "select",
-      "proxies": ["DIRECT", "节点列表", "延迟选优", "故障转移", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["DIRECT", "节点列表", "延迟选优", "故障转移"],
       "include-all": true,
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg"
     },
@@ -498,7 +448,7 @@ function main(config) {
       ...groupBaseOption,
       "name": "漏网之鱼",
       "type": "select",
-      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg"
