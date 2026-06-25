@@ -45,9 +45,32 @@ const dnsConfig = {
   "nameserver": [...foreignNameservers],
   "proxy-server-nameserver":[...domesticNameservers],
   "direct-nameserver":[...domesticNameservers],
+  "fallback": [...foreignNameservers],
+  "fallback-filter": {
+    "geoip": true,
+    "geoip-code": "CN",
+    "ipcidr": ["240.0.0.0/4"],
+    "domain": [
+      "+.google.com",
+      "+.youtube.com",
+      "+.facebook.com",
+      "+.netflix.com",
+      "+.openai.com",
+      "+.anthropic.com",
+      "+.claude.ai"
+    ]
+  },
   "nameserver-policy": {
     "geosite:private,cn": domesticNameservers,
-    "geosite:tencent": domesticNameservers
+    "geosite:cn": domesticNameservers,
+    "geosite:tencent": domesticNameservers,
+    "geosite:category-games@cn": domesticNameservers,
+    "geosite:apple@cn": domesticNameservers,
+    "geosite:microsoft@cn": domesticNameservers,
+    "geosite:steam@cn": domesticNameservers,
+    "geosite:bilibili": domesticNameservers,
+    "geosite:iqiyi": domesticNameservers,
+    "geosite:youku": domesticNameservers
   }
 };
 // 规则集通用配置
@@ -81,13 +104,13 @@ const ruleProviders = {
     "behavior": "domain",
     "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt",
     "path": "./ruleset/loyalsoldier/google.yaml"
-  },// Amors
+  },
   "proxy": {
     ...ruleProviderCommon,
     "behavior": "domain",
     "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt",
     "path": "./ruleset/loyalsoldier/proxy.yaml"
-  },// Amors
+  },
   "direct": {
     ...ruleProviderCommon,
     "behavior": "domain",
@@ -178,8 +201,48 @@ const ruleProviders = {
     "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crypto/Crypto.yaml",
     "path": "./ruleset/blackmatrix7/Crypto.yaml"
   },
+  "geolocation-cn": {
+    "type": "http",
+    "format": "mrs",
+    "behavior": "domain",
+    "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-cn.mrs",
+    "path": "./ruleset/geolocation-cn.mrs",
+    "interval": 86400
+  },
+  "cn": {
+    "type": "http",
+    "format": "mrs",
+    "behavior": "domain",
+    "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/cn.mrs",
+    "path": "./ruleset/cn.mrs",
+    "interval": 86400
+  },
+  "geolocation-!cn": {
+    "type": "http",
+    "format": "mrs",
+    "behavior": "domain",
+    "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/geolocation-!cn.mrs",
+    "path": "./ruleset/geolocation-!cn.mrs",
+    "interval": 86400
+  },
+  "private-ip": {
+    "type": "http",
+    "format": "mrs",
+    "behavior": "ipcidr",
+    "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/private.mrs",
+    "path": "./ruleset/private-ip.mrs",
+    "interval": 86400
+  },
+  "cn-ip": {
+    "type": "http",
+    "format": "mrs",
+    "behavior": "ipcidr",
+    "url": "https://gh-proxy.com/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.mrs",
+    "path": "./ruleset/cn-ip.mrs",
+    "interval": 86400
+  }
 };
-// 规则// Amors
+// 规则
 const rules = [
   "DOMAIN-SUFFIX,googleapis.cn,节点列表",
   "DOMAIN-SUFFIX,gstatic.com,节点列表",
@@ -236,12 +299,23 @@ function main(config) {
 
   config["dns"] = dnsConfig;
 
+  config["geox-url"] = {
+    "geoip": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat",
+    "geosite": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat",
+    "mmdb": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb",
+    "asn": "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  };
+  config["geodata-mode"] = true;
+  config["geo-auto-update"] = true;
+  config["geodata-loader"] = "standard";
+  config["geo-update-interval"] = 24;
+
   config["proxy-groups"] = [
     {
       ...groupBaseOption,
       "name": "节点列表",
       "type": "select",
-      "proxies": ["延迟选优", "故障转移", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
+      "proxies": ["香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点", "延迟选优", "故障转移"],
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
@@ -255,7 +329,7 @@ function main(config) {
       "include-all": true,
       "filter": "^(?!.*(官网|套餐|流量|异常|剩余)).*$",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
-    },// Amors
+    },
     {
       ...groupBaseOption,
       "name": "故障转移",
@@ -311,7 +385,7 @@ function main(config) {
       "proxies": ["节点列表", "延迟选优", "故障转移", "全局直连", "香港节点", "台湾节点", "日本节点", "新加坡节点", "美国节点"],
       "include-all": true,
       "icon": "https://cryptologos.cc/logos/bitcoin-btc-logo.svg"
-    },// Amors
+    },
     {
       ...groupBaseOption,
       "name": "GoogleServer",
@@ -370,7 +444,7 @@ function main(config) {
       "include-all": true,
       "filter": "(?i)台|tw|TW|Taiwan",
       "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/tw.svg"
-    },// Amors
+    },
     {
       ...groupBaseOption,
       "name": "日本节点",
